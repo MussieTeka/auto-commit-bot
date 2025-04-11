@@ -25,4 +25,4 @@ jobs:
         git config --global user.email "mussiekahasay12@gmail.com"
         git add README.md
         git commit -m "Automated update on $(date)"
-        git push https://x-access-token:${GH_TOKEN}@github.com/MissieMaru/auto-commit-bot.git
+        git push https://x-access-token:${GH_TOKEN}@github.com/MussieTeka/auto-commit-bot.git
