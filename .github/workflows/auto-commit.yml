@@ -1,0 +1,28 @@
+name: Auto Commit Bot
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs every hour
+  workflow_dispatch: # Allows manual run
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Update README.md
+      run: |
+        echo "Automated update on $(date)" >> README.md
+
+    - name: Commit and Push Changes
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        git config --global user.name "MussieTeka"
+        git config --global user.email "mussiekahasay12@gmail.com"
+        git add README.md
+        git commit -m "Automated update on $(date)" || echo "Nothing to commit"
+        git push https://x-access-token:${GH_TOKEN}@github.com/MussieTeka/auto-commit-bot.git
